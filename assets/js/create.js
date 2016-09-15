@@ -5,7 +5,7 @@
  * 
  * 1. Include the following jQuery Validate JavaScript in layout.ejs
  *    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
- *
+ * 
  * 2. Use jQuery validate and add validation to the form with the following requirements
  *    First Name - required, at least 2 characters
  *    Last Name  - required, at least 2 characters
@@ -32,6 +32,52 @@
 
  $(function(){
 
- 	//code goes here
+ 	$(".my-error-class").css("color", "red");
+
+ 	jQuery.validator.addMethod("passwordCheck", function(value, element) {
+  		return this.optional( element ) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^\&*\)\(+=._-])[0-9a-zA-Z!@#\$%\^\&*\)\(+=._-]{8,}$/.test( value );
+	}, 'Please enter a valid password.');
+
+ 	$( "#addEmployeeForm" ).validate({
+  		rules: {
+    		firstName: {
+    			required: true,
+     			minlength: 2
+    		},
+
+    		lastName: {
+     			required: true,
+     			minlength: 2
+    		},
+    		email: {
+    			required: true,
+      			email: true
+    		},
+    		homePhone: {
+      			phoneUS: true
+    		},
+    		cellPhone: {
+    			phoneUS: true
+    		},
+    		password: {
+    			passwordCheck: true,
+    			required: true
+    		},
+    		verifyPassword: {
+      			equalTo: "#password"
+    		}
+  		},
+  		errorClass: "text-danger",
+  		messages: {
+  			password: {
+  				passwordCheck: "Not valid, Password should be at least 8 characters, 1 upppercase, 1 lowercase, 1 special character, and one number",
+  				required: "a Password is required"
+  			},
+  			verifyPassword: {
+  				equalTo: "Error: passwords must match"
+  			}
+  		}
+	});
 
  })
+

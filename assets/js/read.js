@@ -30,8 +30,21 @@
  *
  */
 
- $(function(){
+ $(document).ready(function() {
 
- 	//code goes here
+    /*bootstrap datatable formatting
+    *show buttons for copy, csv, pdf, excel & print
+    *allow horizontal scrolling
+    *instantiate buttons for copy, csv, excel, pdf, & print
+    *allows columns to be reordered on the screen
+    */
+    $('#employeeTable').DataTable({
+    	dom: 'Bfrtip',
+    	"scrollX": true,
+    	buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    	],
+    	colReorder: true
+    });
 
- })
+ });
