@@ -32,8 +32,6 @@
 
  $(function(){
 
- 	$(".my-error-class").css("color", "red");
-
  	jQuery.validator.addMethod("passwordCheck", function(value, element) {
   		return this.optional( element ) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^\&*\)\(+=._-])[0-9a-zA-Z!@#\$%\^\&*\)\(+=._-]{8,}$/.test( value );
 	}, 'Please enter a valid password.');

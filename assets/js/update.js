@@ -49,6 +49,19 @@
  */
 
 $(function(){
- 	
+ 	$( "#updateEmployeeForm input" ).prop({
+         disabled: true
+     });
+ 	$( "#updateEmployeeForm button[type='submit']" ).prop({
+         disabled: true
+        });
 
+ 	$('.click').click(function(){
+ 		$( "#updateEmployeeForm input" ).prop({
+         disabled: false
+     });
+ 	$( "#updateEmployeeForm button[type='submit']" ).prop({
+         disabled: false
+        });
+ 	})
 })
